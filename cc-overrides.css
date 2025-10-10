@@ -1,0 +1,13 @@
+/* MixButton cookie banner tweaks */
+.cc-window { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+.cc-window { border-radius: 12px; }
+.cc-banner { border: 1px solid #e6e6ea; }
+
+.cc-window, .cc-message { color:#0f1220; }            /* text */
+.cc-btn { border-radius: 999px; padding: 10px 16px; }
+
+.cc-btn.cc-allow { background:#734573; color:#fff; }   /* primary */
+.cc-btn.cc-deny  { background:#f3eef3; color:#0f1220;} /* secondary */
+.cc-link { color:#734573; text-decoration: underline; }
+
+.cc-revoke { background:#734573; color:#fff; }         /* floating “Cookie settings” */
