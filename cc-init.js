@@ -1,3 +1,29 @@
+// ---- CookieConsent safety loader ------------------------------------------
+(function(){
+  // simple log so we know this file ran
+  console.log('[cc-init] file loaded');
+
+  function loadCC(cb){
+    if (window.cookieconsent && window.cookieconsent.initialise) return cb();
+    // Fallback CDN (different host to avoid SRI/CSP issues)
+    var s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js';
+    s.async = true;
+    s.onload = cb;
+    s.onerror = function(){ console.error('[cc-init] failed to load CookieConsent'); };
+    document.head.appendChild(s);
+  }
+
+  // everything below that currently starts with "window.addEventListener('load', ...)"
+  // should be wrapped so it runs *after* the library is present:
+  loadCC(function(){
+    // === paste your existing code from here ===
+    // window.addEventListener('load', function(){ ... your current init block ... });
+    // === up to here ===
+  });
+})();
+
+
 /* GA/Clarity loaders (deferred) */
 var gaLoaded=false, clarityLoaded=false;
 function loadScript(src){var s=document.createElement('script');s.src=src;s.async=true;document.head.appendChild(s);}
