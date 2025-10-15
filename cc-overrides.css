@@ -1,13 +1,62 @@
-/* MixButton cookie banner tweaks */
-.cc-window { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
-.cc-window { border-radius: 12px; }
-.cc-banner { border: 1px solid #e6e6ea; }
+/* Overlay */
+.cc-overlay{position:fixed;inset:0;background:rgba(15,18,32,.6);z-index:9998;display:none}
 
-.cc-window, .cc-message { color:#0f1220; }            /* text */
-.cc-btn { border-radius: 999px; padding: 10px 16px; }
+/* Centered modal */
+.cc-window{
+  max-width:520px;width:92%;
+  background:#faf7f7;color:#0f1220;border-radius:12px;
+  box-shadow:0 8px 22px rgba(0,0,0,.25);
+  position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);
+  z-index:9999;padding:22px 24px;text-align:left;
+  font-family:"Lato",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+}
+.cc-heading{font-size:20px;font-weight:700;margin:0 0 8px}
+.cc-message{margin:0 0 18px;line-height:1.5;font-size:15px}
 
-.cc-btn.cc-allow { background:#734573; color:#fff; }   /* primary */
-.cc-btn.cc-deny  { background:#f3eef3; color:#0f1220;} /* secondary */
-.cc-link { color:#734573; text-decoration: underline; }
+/* Steps */
+.cc-step{display:none}
+.cc-step.active{display:block}
 
-.cc-revoke { background:#734573; color:#fff; }         /* floating “Cookie settings” */
+/* Action buttons */
+.cc-actions{display:flex;gap:10px;justify-content:flex-start;align-items:stretch}
+.cc-btn{
+  border:0;border-radius:30px;font-weight:700;cursor:pointer;
+  padding:10px 18px;transition:all .15s ease;white-space:nowrap;max-width:100%;
+}
+.cc-btn.primary{background:#431a1a;color:#fff;flex:1 1 auto;min-width:140px}
+.cc-btn.primary:hover{background:#351414}
+.cc-btn.secondary{background:#ede9e9;color:#0f1220;flex:0 0 auto;min-width:140px}
+.cc-btn.secondary:hover{background:#f6f4f4;text-decoration:underline}
+
+/* Toggles */
+.cc-toggles{display:grid;gap:12px;margin:12px 0 18px}
+.cc-toggle{display:flex;align-items:center;justify-content:space-between;background:#fff;border:1px solid #e6e6ea;border-radius:10px;padding:12px 14px}
+.cc-toggle h4{margin:0;font-size:15px}
+.cc-toggle p{margin:6px 0 0;font-size:13px;color:#3a3d4a}
+.cc-toggle .switch{position:relative;width:46px;height:26px;flex:0 0 46px}
+.cc-toggle .switch input{display:none}
+.cc-toggle .slider{position:absolute;cursor:pointer;inset:0;background:#d8cfd0;border-radius:30px;transition:.2s}
+.cc-toggle .slider:before{content:"";position:absolute;height:20px;width:20px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.2s;box-shadow:0 1px 2px rgba(0,0,0,.2)}
+.cc-toggle input:checked + .slider{background:#431a1a}
+.cc-toggle input:checked + .slider:before{transform:translateX(20px)}
+
+/* Mobile */
+@media (max-width:480px){
+  .cc-window{padding:18px}
+  .cc-actions{flex-direction:column}
+  .cc-btn{width:100%}
+  .cc-btn.primary{order:-1} /* Continue first on mobile */
+}
+
+/* Floating Privacy button */
+#cc-manage-btn{
+  position:fixed;bottom:10px;left:10px;background:#faf7f7;color:#0f1220;
+  border:1px solid #e6e6ea;border-radius:30px;
+  font-family:"Lato",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  font-size:14px;font-weight:400;padding:8px 14px;cursor:pointer;z-index:9997;
+  box-shadow:0 2px 10px rgba(0,0,0,.08);transition:all .15s ease;
+}
+#cc-manage-btn:hover{text-decoration:underline}
+@media (max-width:480px){
+  #cc-manage-btn{bottom:5px;left:10px;font-size:13px;padding:8px 12px}
+}
